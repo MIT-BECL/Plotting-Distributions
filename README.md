@@ -25,7 +25,7 @@ Inside this repository contains:
     - The included scripts use data from this **[predator-prey publication](https://www.nature.com/articles/nature25479)**.
     - Additional data sets are included from this **[amyloid-beta publication](https://www.nature.com/articles/s41586-018-0790-y)** and this **[PD-1 publication](https://www.nature.com/articles/s41586-018-0756-0)**.
 
-*We do not own this data, nor did we modify the data downloaded in anyway. All credit goes to the authors for providing this data with publication. Usage of this data is at the discretion of the user.*
+*We do not own this data. All credit goes to the authors for providing this data with publication. Usage of this data is at the discretion of the user.*
 
 Within the notebooks provided, the system and session info are detailed.
 
