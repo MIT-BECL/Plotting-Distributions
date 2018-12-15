@@ -19,7 +19,7 @@ race in lion, zebra, cheetah and impala" by Wilson *et al.*
 You can download the data directly from the publication website or within this Github repository. We will be walking through the generation of the plots shown on the cheatsheet. The final product will be the (nearly) reproduced figure 2D from the publication and our own version of it.
 
 Let's see if we can reproduce or improve upon Figure 2D:
-![figure2d](nature25479_figure2d.png)
+![figure2d](data/nature25479_fig2d.png)
 
 ### Setting up the workspace
 We set a default for the notebook to echo code and load in the *tidyverse* package, which includes a whole group necessary and also unecessary packages.
@@ -32,7 +32,7 @@ library(tidyverse)
 ### Load in data
 We load in the data and check out what it looks like.
 ```R
-raw_data <- read.table("nature25479_f2_formatted.csv", header = TRUE, sep=",", stringsAsFactors = FALSE)
+raw_data <- read.table("nature25479_fig2d.csv", header = TRUE, sep=",", stringsAsFactors = FALSE)
 summary(raw_data)
 ```
 

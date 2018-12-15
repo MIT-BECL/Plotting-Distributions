@@ -24,7 +24,7 @@ theme_update(aspect.ratio = 1/1)
 
 # ----
 # load data
-raw_data <- read.table("nature25479_f2_formatted.csv", header = TRUE, sep=",", stringsAsFactors = FALSE) 
+raw_data <- read.table("nature25479_fig2d.csv", header = TRUE, sep=",", stringsAsFactors = FALSE) 
 summary(raw_data)        # view quick summary of data
 head(raw_data, n = 5)    # view top 5 entries
 

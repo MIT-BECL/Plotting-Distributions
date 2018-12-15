@@ -21,7 +21,11 @@ The files within this repository can be downloaded using the green "clone or dow
 Inside this repository contains:
   - Cheatsheet PDFs for quick viewing
   - Associated notebooks and raw data to generate plots within cheatsheets
-  - Practice data sets you can use to generate plots and play around with themes of your own
+  - Practice data sets you can use to generate plots and play around with themes of your own. Both the data and original plot are included in the `/data` folder.
+    - The included scripts use data from this **[predator-prey publication](https://www.nature.com/articles/nature25479)**.
+    - Additional data sets are included from this **[amyloid-beta publication](https://www.nature.com/articles/s41586-018-0790-y)** and this **[PD-1 publication](https://www.nature.com/articles/s41586-018-0756-0)**.
+
+*We do not own this data, nor did we modify the data downloaded in anyway. All credit goes to the authors for providing this data with publication. Usage of this data is at the discretion of the user.*
 
 Within the notebooks provided, the system and session info are detailed.
 
