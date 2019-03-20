@@ -14,7 +14,7 @@ library(tidyverse) # provides primary data wrangling and visualization packages
 library(viridis)   # provides an easy function to generate color schemes outside of ggplot2
 
 # [CRITICAL] set working directory
-wd <- # set your working directory here
+wd <- "~/Github/distributions" # set your working directory here
 setwd(wd)
 
 cmap <- c("#4473B0", "#C15436", "#6E348C", "#E4AC43") # colors used in the publication
@@ -24,7 +24,7 @@ theme_update(aspect.ratio = 1/1)
 
 # ----
 # load data
-raw_data <- read.table("nature25479_fig2d.csv", header = TRUE, sep=",", stringsAsFactors = FALSE) 
+raw_data <- read.table("data/nature25479_fig2d.csv", header = TRUE, sep=",", stringsAsFactors = FALSE) 
 summary(raw_data)        # view quick summary of data
 head(raw_data, n = 5)    # view top 5 entries
 
@@ -121,10 +121,10 @@ i5 <- ggplot(data = summary_data, aes(x = Species, y = mean, fill = Species)) +
   geom_col(color = "black", width = 0.4, alpha = 0.6) + 
   geom_errorbar(aes(ymin = mean - se, ymax = mean + se), size = 0.75, width = 0.1) +
   geom_point(data = raw_data, aes(x = Species, y = Peak_Power, color = Species, shape = Species), size = 3,
-             position = position_jitter(width = 0.1)) +
-  scale_color_viridis(guide = FALSE, discrete = TRUE, alpha = 0.8, end = 0.75, option = "viridis") +
+             alpha = 0.75, position = position_jitter(width = 0.1)) +
+  scale_color_brewer(palette = "Paired", guide = FALSE, direction = -1) +
   scale_shape_manual(values=c(21, 22, 23, 25), guide = FALSE) + 
-  scale_fill_viridis(guide = FALSE, discrete = TRUE, alpha = 0.8, end = 0.75, option = "viridis") +
+  scale_fill_brewer(palette = "Paired", guide = FALSE, direction = -1) +
   scale_y_continuous(expand = c(0, 0), limits = c(0, 190)) +
   scale_x_discrete(name = "Species", limits = c("Zebra", "Lion", "Impala", "Cheetah"), 
                    labels = c("Cheetah" = "Cheetah", "Impala" = "Impala", "Lion" = "Lion", "Zebra" = "Zebra")) 
@@ -152,8 +152,8 @@ ggsave(file="i5_horz_bargraph.png", plot = i5, width = 8, height = 6, units = "i
 i6 <- ggplot(data = raw_data, aes(x = Species, y = Peak_Power, fill = Species, shape = Species)) + 
   geom_boxplot(outlier.shape = NA, varwidth = TRUE, notch = TRUE, coef = 1.5,
                width = 0.4, color = "black", alpha = 0.6) + 
-  geom_point(size = 3, position = position_jitter(width = 0.1)) +
-  scale_fill_viridis(guide = FALSE, discrete = TRUE, alpha = 0.8, end = 0.75, option = "viridis") +
+  geom_point(size = 3, position = position_jitter(width = 0.1), alpha = 0.75) +
+  scale_fill_brewer(palette = "Paired", guide = FALSE, direction = -1) +
   scale_shape_manual(values=c(21, 22, 23, 25), guide = FALSE) +
   scale_y_continuous(expand = c(0, 0), limits = c(0, 190)) +
   scale_x_discrete(name = "Species", limits = c("Zebra", "Lion", "Impala", "Cheetah"), 
@@ -163,8 +163,8 @@ i6 <- i6 +
   labs(x = "Species", y = bquote(bold("Peak Power (W" ~kg^-1 ~ ")"))) + 
   coord_flip() + 
   theme(
-    axis.title.x = element_text(face = "bold", margin = margin(t = 10), size = rel(1.5)),
-    axis.title.y = element_text(face = "bold", size = rel(1.25), angle = 0, vjust = 0.5),
+    axis.title.x = element_text(face = "bold", margin = margin(t = 10), size = rel(1.75)),
+    axis.title.y = element_text(face = "bold", size = rel(1.75), angle = 0, vjust = 0.5),
     axis.text.x = element_text(color = "black", margin = margin(t = 5), size = rel(1.75)),
     axis.text.y = element_text(color = "black", margin = margin(r = 5), size = rel(1.75)),
     axis.line = element_line(size = 1),
@@ -175,14 +175,14 @@ i6 <- i6 +
 i6
 
 ggsave(file="i6_boxplot_plot.svg", plot = i6, width = 8, height = 6, units = "in")
-ggsave(file="i6_boxplot_plot.png", plot = i6, width = 8, height = 6, units = "in", dpi = 360)
+ggsave(file="private/i6_boxplot_plot.png", plot = i6, width = 8, height = 6, units = "in", dpi = 360)
 
 # ----
 # iteration 7: turn into violin plot
 i7 <- ggplot(data = raw_data, aes(x = Species, y = Peak_Power, fill = Species, shape = Species)) + 
   geom_violin(draw_quantiles = c(0.5), color = "black", alpha = 0.6) + 
-  geom_point(size = 3, position = position_jitter(width = 0.1)) +
-  scale_fill_viridis(guide = FALSE, discrete = TRUE, alpha = 0.8, end = 0.75, option = "viridis") +
+  geom_point(size = 3, position = position_jitter(width = 0.1), alpha = 0.75) +
+  scale_fill_brewer(palette = "Paired", guide = FALSE, direction = -1) +
   scale_shape_manual(values=c(21, 22, 23, 25), guide = FALSE) +
   scale_y_continuous(breaks = c(25, 50, 75, 100, 125, 150), expand = c(0, 0), limits = c(0, 190)) + 
   scale_x_discrete(name = "Species", limits = c("Zebra", "Lion", "Impala", "Cheetah"), 
@@ -192,19 +192,44 @@ i7 <- i7 +
   labs(x = "Species", y = bquote(bold("Peak Power (W" ~kg^-1 ~ ")"))) + 
   coord_flip() + 
   theme(
-    axis.title.x = element_text(face = "bold", margin = margin(t = 10), size = rel(1.5)),
-    axis.title.y = element_text(face = "bold", size = rel(1.25), angle = 0, vjust = 0.5),
+    axis.title.x = element_text(face = "bold", margin = margin(t = 10), size = rel(1.75)),
+    axis.title.y = element_text(face = "bold", size = rel(1.75), angle = 0, vjust = 0.5),
     axis.text.x = element_text(color = "black", margin = margin(t = 20), size = rel(1.75)),
     axis.text.y = element_text(color = "black", margin = margin(r = 20), size = rel(1.75)),
-    axis.line = element_line(size = rel(1.5)),
+    axis.line = element_line(size = rel(1.75)),
     axis.ticks.length = unit(-7.5, "pt"),
-    axis.ticks = element_line(size = rel(1.5)),
+    axis.ticks = element_line(size = rel(1.75)),
     axis.ticks.y = element_blank(),
     panel.grid.major.x = element_line(color = "grey90", size = rel(0.5)))
 
 i7
 ggsave(file="i7_violin_plot.svg", plot = i7, width = 8, height = 8, units = "in")
 ggsave(file="i7_violin_plot.png", plot = i7, width = 8, height = 8, units = "in", dpi = 360)
+
+# ----
+# iteration 8: turn into density plot
+i8 <- ggplot(data = raw_data, aes(Peak_Power, fill = Species), color = "black") + 
+  geom_density(alpha = 0.4) +
+  scale_fill_brewer(palette = "Paired", guide = "legend", direction = -1) +
+  scale_y_continuous(expand = c(0, 0))
+  #scale_x_discrete(name = "Species", limits = c("Zebra", "Lion", "Impala", "Cheetah"), 
+    #labels = c("Cheetah" = "Cheetah", "Impala" = "Impala", "Lion" = "Lion", "Zebra" = "Zebra"))
+
+i8 <- i8 +
+  labs(x = bquote(bold("Peak Power (W" ~kg^-1 ~ ")")), y = "Density") + 
+  theme(
+    axis.title.x = element_text(face = "bold", margin = margin(t = 10), size = rel(1.5)),
+    axis.title.y = element_text(face = "bold", size = rel(1.75), angle = 0, vjust = 0.5),
+    axis.text.x = element_text(color = "black", margin = margin(t = 20), size = rel(1.75)),
+    axis.text.y = element_text(color = "black", margin = margin(r = 20), size = rel(1.75)),
+    axis.line = element_line(size = rel(1.75)),
+    axis.ticks.length = unit(-7.5, "pt"),
+    axis.ticks = element_line(size = rel(1.75)),
+    axis.ticks.y = element_blank(),
+    panel.grid.major.x = element_line(color = "grey90", size = rel(0.5)))
+
+i8
+ggsave(file="i8_density_plot.png", plot = i8, width = 8, height = 8, units = "in", dpi = 360)
 
 # ----
 # replication of paper figure

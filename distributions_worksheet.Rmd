@@ -1,5 +1,5 @@
 ---
-title: "Working through Univariate Plots"
+title: "Working through Distribution Plots"
 author: "Josh Peters"
 date: "`r Sys.Date()`"
 output:
@@ -16,7 +16,7 @@ library(viridis)
 
 ## Recapping the cheatsheet
 
-The univariate plotting cheatsheet aims to provide a quick idea about the necessary elements and considerations for plotting distributions and comparisons of one variable data across distinct categories. Common examples in the biological field include RNA and protein levels across samples and replicates.
+The distributions plotting cheatsheet aims to provide a quick idea about the necessary elements and considerations for plotting distributions and comparisons of one variable data across distinct categories. Common examples in the biological field include RNA and protein levels across samples and replicates.
 
 We first looked at this dataset, a summary of which is shown below. We used this data to generate several plots, which iteratively improved upon different plotting elements.
 
@@ -37,32 +37,31 @@ knitr::kable(
 
 The cheatsheet produced this final plot, which chose to use a `violin plot` to display the data across the 4 species. What do you think are the biggest improvements with this plot, compared to previous iterations?
 
-```{r fig.width = 6, fig.height = 4, fig.align = "center", echo = FALSE}
-current_theme <- theme_set(theme_classic()) # sets a starting theme for plotting
+```{r fig.width = 5, fig.height = 3, fig.align = "center", echo = FALSE}
+current_theme <- theme_set(theme_classic(base_size=10)) # sets a starting theme for plotting
 theme_update(aspect.ratio = 1/1)
 i7 <- ggplot(data = raw_data, aes(x = Species, y = Peak_Power, fill = Species, shape = Species)) + 
   geom_violin(draw_quantiles = c(0.5), color = "black", alpha = 0.6) + 
-  geom_point(size = 3, position = position_jitter(width = 0.1)) +
-  scale_fill_viridis(guide = FALSE, discrete = TRUE, alpha = 0.8, end = 0.75, option = "viridis") +
+  geom_point(size = 3, position = position_jitter(width = 0.1), alpha = 0.75) +
+  scale_fill_brewer(palette = "Paired", guide = FALSE, direction = -1) +
   scale_shape_manual(values=c(21, 22, 23, 25), guide = FALSE) +
   scale_y_continuous(breaks = c(25, 50, 75, 100, 125, 150), expand = c(0, 0), limits = c(0, 190)) + 
   scale_x_discrete(name = "Species", limits = c("Zebra", "Lion", "Impala", "Cheetah"), 
                    labels = c("Cheetah" = "Cheetah", "Impala" = "Impala", "Lion" = "Lion", "Zebra" = "Zebra"))
 
 i7 <- i7 + 
-  labs(x = "Species", y = bquote("Peak Power (W" ~kg^-1 ~ ")")) + 
+  labs(x = "Species", y = bquote(bold("Peak Power (W" ~kg^-1 ~ ")"))) + 
   coord_flip() + 
   theme(
-    axis.title.x = element_text(margin = margin(t = 10), size = rel(1.0)),
-    axis.title.y = element_text(size = rel(1.0), angle = 0, vjust = 0.5),
+    axis.title.x = element_text(face = "bold", margin = margin(t = 10), size = rel(1.25)),
+    axis.title.y = element_text(face = "bold", size = rel(1.25), angle = 0, vjust = 0.5),
     axis.text.x = element_text(color = "black", margin = margin(t = 20), size = rel(1.25)),
     axis.text.y = element_text(color = "black", margin = margin(r = 20), size = rel(1.25)),
-    axis.line = element_line(size = rel(1.5)),
+    axis.line = element_line(size = rel(1.25)),
     axis.ticks.length = unit(-7.5, "pt"),
-    axis.ticks = element_line(size = rel(1.5)),
+    axis.ticks = element_line(size = rel(1.25)),
     axis.ticks.y = element_blank(),
-    panel.grid.major.x = element_line(color = "grey90", size = rel(0.5)),
-    plot.margin = unit(rep(0.2, 4), "in"))
+    panel.grid.major.x = element_line(color = "grey90", size = rel(0.5)))
 
 i7
 ```
