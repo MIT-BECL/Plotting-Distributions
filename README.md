@@ -19,7 +19,7 @@ Data with temporal aspects *can* be displayed with this plots, but the number of
 ## Getting Started
 The files within this repository can be downloaded using the green "clone or download" button above.  
 Inside this repository contains:
-  - Cheatsheet PDFs for quick viewing
+  - [Cheatsheet PDF for quick viewing](https://github.com/MIT-BECL/Plotting-Distributions/raw/master/distributions_walkthrough.pdf)
   - Associated notebooks and raw data to generate plots within cheatsheets
   - Practice data sets you can use to generate plots and play around with themes of your own. Both the data and original plot are included in the `/data` folder.
     - The included scripts use data from this **[predator-prey publication](https://www.nature.com/articles/nature25479)**.
