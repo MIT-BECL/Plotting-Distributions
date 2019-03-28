@@ -17,8 +17,8 @@ This repository compiles basic R resources to build plots comparing distribution
 Data with temporal aspects *can* be displayed with this plots, but the number of time points should be less than 3. Regardless, it is not recommended.
 
 ## Getting Started
-The files within this repository can be downloaded using the green "clone or download" button above.  
-Inside this repository contains:
+The files can be found within this [repository](https://github.com/MIT-BECL/Plotting-Distributions).  
+This repository contains:
   - [Cheatsheet PDF for quick viewing](https://github.com/MIT-BECL/Plotting-Distributions/raw/master/distributions_walkthrough.pdf)
   - Associated notebooks and raw data to generate plots within cheatsheets
   - Practice data sets you can use to generate plots and play around with themes of your own. Both the data and original plot are included in the `/data` folder.
