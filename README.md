@@ -18,6 +18,7 @@ Data with temporal aspects *can* be displayed with this plots, but the number of
 
 ## Getting Started
 The files can be found within this [repository](https://github.com/MIT-BECL/Plotting-Distributions).  
+
 This repository contains:
   - [Cheatsheet PDF for quick viewing](https://github.com/MIT-BECL/Plotting-Distributions/raw/master/distributions_walkthrough.pdf)
   - Associated notebooks and raw data to generate plots within cheatsheets
